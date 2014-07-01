@@ -30,36 +30,41 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+		//echo $this->Html->css('cake.generic');
+		echo $this->Html->css('../vendors/bootstrap/bootstrap-3.2.0/css/bootstrap.min');
+		echo $this->Html->css('../vendors/bootstrap/bootstrap-3.2.0/css/bootstrap-theme.min');
+		echo $this->Html->css('reset');
+
+		echo $this->Html->script('../vendors/bootstrap/bootstrap-3.2.0/js/bootstrap.min');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->fetch('script');
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+	<div class="container">
+		<div class="row" id="header">
+			<div class="col-xs-12">
+				<h1><?php echo $this->Html->link(__d('project_music', 'Exploration sur les inventaires de musiques'), '/');?></h1>
+			</div>
 		</div>
-		<div id="content">
 
-			<?php echo $this->Session->flash(); ?>
+		<div class="row" id="content">
+			<div class="col-xs-12">
+				<?php echo $this->Session->flash(); ?>
+				<?php echo $this->fetch('content'); ?>
+			</div>
+		</div>
 
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p>
-		</div>
+		<footer class="row">
+			<div class="col-xs-12">
+				<a href="http://cakephp.org/changelogs/<?php echo Configure::version(); ?>"><?php echo __d('project_music', 'CakePHP %s.', Configure::version()); ?></a>
+			</div>
+		</footer>
 	</div>
+
 	<?php echo $this->element('sql_dump'); ?>
+
+	<?= $this->fetch('script') ?>
 </body>
 </html>
